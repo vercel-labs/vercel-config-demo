@@ -1,6 +1,6 @@
-import { PageLayout } from "@/components/page-layout"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import { PageLayout } from "@/components/page-layout";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 /**
  * Sale Page V1 (Default)
@@ -13,7 +13,7 @@ export default function SalePageV1() {
     <PageLayout>
       <div className="space-y-6">
         <div className="flex items-center gap-3">
-          <h1 className="text-3xl font-bold tracking-tight">Sale</h1>
+          <h1 className="font-bold text-3xl tracking-tight">Sale</h1>
           <Badge variant="secondary">Version 1</Badge>
         </div>
 
@@ -23,20 +23,21 @@ export default function SalePageV1() {
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-muted-foreground">
-              You are viewing the <strong>V1 (classic)</strong> version of the sale page.
+              You are viewing the <strong>V1 (classic)</strong> version of the
+              sale page.
             </p>
             <p className="text-muted-foreground">
-              This page is controlled by the <code>sale_page_version</code> key in Edge Config.
-              When set to <code>&quot;v2&quot;</code>, the middleware will rewrite this request to show
-              the V2 page instead.
+              This page is controlled by the <code>sale_page_version</code> key
+              in Edge Config. When set to <code>&quot;v2&quot;</code>, the
+              middleware will rewrite this request to show the V2 page instead.
             </p>
             <div className="rounded-lg border-2 border-dashed p-8 text-center">
-              <p className="text-xl font-semibold">Classic Sale Banner</p>
+              <p className="font-semibold text-xl">Classic Sale Banner</p>
               <p className="text-muted-foreground">Traditional layout style</p>
             </div>
           </CardContent>
         </Card>
       </div>
     </PageLayout>
-  )
+  );
 }

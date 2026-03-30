@@ -1,9 +1,15 @@
-import { PageLayout } from "@/components/page-layout"
-import { DebugPanel } from "@/components/debug-panel"
-import { EnvVarsTable } from "./env-vars-table"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import { Info } from "lucide-react"
+import { Info } from "lucide-react";
+import { DebugPanel } from "@/components/debug-panel";
+import { PageLayout } from "@/components/page-layout";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { EnvVarsTable } from "./env-vars-table";
 
 /**
  * BUILD-TIME ENVIRONMENT VARIABLES
@@ -16,15 +22,17 @@ import { Info } from "lucide-react"
  * - Brand names that are deployment-specific
  * - Configuration that should be consistent across all requests
  */
-const BUILD_TIME_BRAND_NAME = process.env.DEMO_BRAND_NAME
-const BUILD_TIME_API_URL = process.env.DEMO_API_BASE_URL
+const BUILD_TIME_BRAND_NAME = process.env.DEMO_BRAND_NAME;
+const BUILD_TIME_API_URL = process.env.DEMO_API_BASE_URL;
 
 export default function EnvVarsPage() {
   return (
     <PageLayout>
       <div className="space-y-8">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Environment Variables</h1>
+          <h1 className="font-bold text-3xl tracking-tight">
+            Environment Variables
+          </h1>
           <p className="mt-2 text-muted-foreground">
             Demonstrating build-time vs runtime environment variable usage
           </p>
@@ -35,18 +43,19 @@ export default function EnvVarsPage() {
           <Info className="h-4 w-4" />
           <AlertTitle>Key Concepts</AlertTitle>
           <AlertDescription className="mt-2">
-            <ul className="list-disc pl-4 space-y-1">
+            <ul className="list-disc space-y-1 pl-4">
               <li>
-                <strong>Environment-specific:</strong> Env vars can differ by environment
-                (Development, Preview, Production) - configure in Vercel Project Settings.
+                <strong>Environment-specific:</strong> Env vars can differ by
+                environment (Development, Preview, Production) - configure in
+                Vercel Project Settings.
               </li>
               <li>
-                <strong>Changes require redeployment:</strong> Updates apply to new deployments
-                only, not retroactively to existing ones.
+                <strong>Changes require redeployment:</strong> Updates apply to
+                new deployments only, not retroactively to existing ones.
               </li>
               <li>
-                <strong>Branch overrides:</strong> In Preview, branch-specific overrides take
-                precedence over general Preview env vars.
+                <strong>Branch overrides:</strong> In Preview, branch-specific
+                overrides take precedence over general Preview env vars.
               </li>
             </ul>
           </AlertDescription>
@@ -61,14 +70,15 @@ export default function EnvVarsPage() {
                 Read when the module is evaluated during build
               </CardDescription>
             </CardHeader>
-            <CardContent className="text-sm text-muted-foreground">
+            <CardContent className="text-muted-foreground text-sm">
               <p>
-                Variables accessed at the top level of a module (outside functions) are captured
-                during the build process. The values are &quot;baked in&quot; and remain constant
-                for the life of that deployment.
+                Variables accessed at the top level of a module (outside
+                functions) are captured during the build process. The values are
+                &quot;baked in&quot; and remain constant for the life of that
+                deployment.
               </p>
               <code className="mt-2 block rounded bg-muted p-2 text-xs">
-                const API_URL = process.env.MY_VAR // At module scope
+                {"const API_URL = process.env.MY_VAR // At module scope"}
               </code>
             </CardContent>
           </Card>
@@ -78,11 +88,12 @@ export default function EnvVarsPage() {
               <CardTitle className="text-lg">Runtime Variables</CardTitle>
               <CardDescription>Read fresh on each request</CardDescription>
             </CardHeader>
-            <CardContent className="text-sm text-muted-foreground">
+            <CardContent className="text-muted-foreground text-sm">
               <p>
-                Variables accessed inside Route Handlers or Server Components are read at request
-                time. This allows for more dynamic behavior, though the values still come from the
-                deployment&apos;s environment.
+                Variables accessed inside Route Handlers or Server Components
+                are read at request time. This allows for more dynamic behavior,
+                though the values still come from the deployment&apos;s
+                environment.
               </p>
               <code className="mt-2 block rounded bg-muted p-2 text-xs">
                 {"export async function GET() { return process.env.MY_VAR }"}
@@ -101,8 +112,8 @@ export default function EnvVarsPage() {
           </CardHeader>
           <CardContent>
             <EnvVarsTable
-              buildTimeBrandName={BUILD_TIME_BRAND_NAME}
               buildTimeApiUrl={BUILD_TIME_API_URL}
+              buildTimeBrandName={BUILD_TIME_BRAND_NAME}
             />
           </CardContent>
         </Card>
@@ -115,5 +126,5 @@ export default function EnvVarsPage() {
         />
       </div>
     </PageLayout>
-  )
+  );
 }

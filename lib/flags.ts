@@ -1,4 +1,4 @@
-import { flag } from "flags/next"
+import { flag } from "flags/next";
 
 /**
  * Feature Flags Configuration using Vercel Flags SDK
@@ -30,9 +30,9 @@ export const newPdpLayoutFlag = flag<boolean>({
   decide: () => {
     // Fallback decision logic when Statsig is not configured
     // In production, replace with Statsig adapter
-    return process.env.FLAG_NEW_PDP_LAYOUT === "true"
+    return process.env.FLAG_NEW_PDP_LAYOUT === "true";
   },
-})
+});
 
 /**
  * Flag: Free Shipping Threshold
@@ -47,10 +47,10 @@ export const freeShippingThresholdFlag = flag<number>({
   options: [25, 50, 75, 100, 150],
   decide: () => {
     // In production, this would come from Statsig dynamic config
-    const threshold = process.env.FLAG_FREE_SHIPPING_THRESHOLD
-    return threshold ? parseInt(threshold, 10) : 50
+    const threshold = process.env.FLAG_FREE_SHIPPING_THRESHOLD;
+    return threshold ? Number.parseInt(threshold, 10) : 50;
   },
-})
+});
 
 /**
  * Flag: Checkout Experiment Variant
@@ -58,7 +58,9 @@ export const freeShippingThresholdFlag = flag<number>({
  * Determines which checkout flow variant to show.
  * Use case: Running an A/B/n experiment on checkout experience.
  */
-export const checkoutExperimentFlag = flag<"control" | "variant_a" | "variant_b">({
+export const checkoutExperimentFlag = flag<
+  "control" | "variant_a" | "variant_b"
+>({
   key: "flag_checkout_experiment_variant",
   description: "Checkout experience experiment variant",
   defaultValue: "control",
@@ -69,7 +71,7 @@ export const checkoutExperimentFlag = flag<"control" | "variant_a" | "variant_b"
       | "control"
       | "variant_a"
       | "variant_b"
-      | undefined
-    return variant || "control"
+      | undefined;
+    return variant || "control";
   },
-})
+});

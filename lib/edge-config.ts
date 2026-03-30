@@ -1,4 +1,4 @@
-import { createClient, type EdgeConfigClient } from "@vercel/edge-config"
+import { createClient, type EdgeConfigClient } from "@vercel/edge-config";
 
 /**
  * Edge Config Client Utility
@@ -18,35 +18,35 @@ import { createClient, type EdgeConfigClient } from "@vercel/edge-config"
 // The EDGE_CONFIG env var is automatically set when you link an Edge Config store
 function getEdgeConfigClient(): EdgeConfigClient | null {
   if (!process.env.EDGE_CONFIG) {
-    return null
+    return null;
   }
-  return createClient(process.env.EDGE_CONFIG)
+  return createClient(process.env.EDGE_CONFIG);
 }
 
-export const edgeConfig = getEdgeConfigClient()
+export const edgeConfig = getEdgeConfigClient();
 
 /**
  * Type definitions for our demo Edge Config keys
  */
 export interface RegionalBanner {
   [countryCode: string]: {
-    text: string
-    backgroundColor: string
-    textColor: string
-  }
+    text: string;
+    backgroundColor: string;
+    textColor: string;
+  };
 }
 
 export interface RedirectRule {
-  from: string
-  to: string
-  permanent: boolean
+  from: string;
+  permanent: boolean;
+  to: string;
 }
 
 export interface EdgeConfigData {
-  regional_banner_by_country?: RegionalBanner
-  blocked_skus?: string[]
-  redirect_rules?: RedirectRule[]
-  sale_page_version?: "v1" | "v2"
+  blocked_skus?: string[];
+  redirect_rules?: RedirectRule[];
+  regional_banner_by_country?: RegionalBanner;
+  sale_page_version?: "v1" | "v2";
 }
 
 /**
@@ -54,26 +54,27 @@ export interface EdgeConfigData {
  */
 export async function getEdgeConfigValues(): Promise<EdgeConfigData> {
   if (!edgeConfig) {
-    console.warn("Edge Config not configured - EDGE_CONFIG env var not set")
-    return {}
+    console.warn("Edge Config not configured - EDGE_CONFIG env var not set");
+    return {};
   }
 
   try {
-    const [regionalBanner, blockedSkus, redirectRules, salePageVersion] = await Promise.all([
-      edgeConfig.get<RegionalBanner>("regional_banner_by_country"),
-      edgeConfig.get<string[]>("blocked_skus"),
-      edgeConfig.get<RedirectRule[]>("redirect_rules"),
-      edgeConfig.get<"v1" | "v2">("sale_page_version"),
-    ])
+    const [regionalBanner, blockedSkus, redirectRules, salePageVersion] =
+      await Promise.all([
+        edgeConfig.get<RegionalBanner>("regional_banner_by_country"),
+        edgeConfig.get<string[]>("blocked_skus"),
+        edgeConfig.get<RedirectRule[]>("redirect_rules"),
+        edgeConfig.get<"v1" | "v2">("sale_page_version"),
+      ]);
 
     return {
       regional_banner_by_country: regionalBanner ?? undefined,
       blocked_skus: blockedSkus ?? undefined,
       redirect_rules: redirectRules ?? undefined,
       sale_page_version: salePageVersion ?? undefined,
-    }
+    };
   } catch (error) {
-    console.error("Error fetching Edge Config:", error)
-    return {}
+    console.error("Error fetching Edge Config:", error);
+    return {};
   }
 }

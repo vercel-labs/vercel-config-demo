@@ -1,6 +1,8 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
+import { Badge } from "@/components/ui/badge";
+import { Spinner } from "@/components/ui/spinner";
 import {
   Table,
   TableBody,
@@ -8,36 +10,59 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
-import { Badge } from "@/components/ui/badge"
-import { Spinner } from "@/components/ui/spinner"
+} from "@/components/ui/table";
+
+function EnvVarValue({
+  isRuntime,
+  loading,
+  value,
+}: {
+  isRuntime: boolean;
+  loading: boolean;
+  value: string | undefined;
+}) {
+  if (isRuntime && loading) {
+    return <Spinner className="h-4 w-4" />;
+  }
+  if (value) {
+    return (
+      <code className="rounded bg-muted px-1.5 py-0.5 text-xs">{value}</code>
+    );
+  }
+  return <span className="text-muted-foreground text-xs italic">not set</span>;
+}
 
 interface EnvVarsTableProps {
-  buildTimeBrandName?: string
-  buildTimeApiUrl?: string
+  buildTimeApiUrl?: string;
+  buildTimeBrandName?: string;
 }
 
 interface RuntimeConfig {
-  DEMO_PROMO_BANNER_TEXT?: string
-  DEMO_COLOR_THEME?: string
+  DEMO_COLOR_THEME?: string;
+  DEMO_PROMO_BANNER_TEXT?: string;
 }
 
-export function EnvVarsTable({ buildTimeBrandName, buildTimeApiUrl }: EnvVarsTableProps) {
-  const [runtimeConfig, setRuntimeConfig] = useState<RuntimeConfig | null>(null)
-  const [loading, setLoading] = useState(true)
+export function EnvVarsTable({
+  buildTimeBrandName,
+  buildTimeApiUrl,
+}: EnvVarsTableProps) {
+  const [runtimeConfig, setRuntimeConfig] = useState<RuntimeConfig | null>(
+    null
+  );
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // Fetch runtime config from API route
     fetch("/api/runtime-config")
       .then((res) => res.json())
       .then((data) => {
-        setRuntimeConfig(data)
-        setLoading(false)
+        setRuntimeConfig(data);
+        setLoading(false);
       })
       .catch(() => {
-        setLoading(false)
-      })
-  }, [])
+        setLoading(false);
+      });
+  }, []);
 
   const rows = [
     {
@@ -64,7 +89,7 @@ export function EnvVarsTable({ buildTimeBrandName, buildTimeApiUrl }: EnvVarsTab
       value: runtimeConfig?.DEMO_COLOR_THEME,
       notes: "Theme preference fetched dynamically.",
     },
-  ]
+  ];
 
   return (
     <Table>
@@ -80,24 +105,26 @@ export function EnvVarsTable({ buildTimeBrandName, buildTimeApiUrl }: EnvVarsTab
         {rows.map((row) => (
           <TableRow key={row.name}>
             <TableCell>
-              <Badge variant={row.source === "Build-time" ? "default" : "secondary"}>
+              <Badge
+                variant={row.source === "Build-time" ? "default" : "secondary"}
+              >
                 {row.source}
               </Badge>
             </TableCell>
             <TableCell className="font-mono text-xs">{row.name}</TableCell>
             <TableCell>
-              {row.source === "Runtime" && loading ? (
-                <Spinner className="h-4 w-4" />
-              ) : row.value ? (
-                <code className="rounded bg-muted px-1.5 py-0.5 text-xs">{row.value}</code>
-              ) : (
-                <span className="text-muted-foreground italic text-xs">not set</span>
-              )}
+              <EnvVarValue
+                isRuntime={row.source === "Runtime"}
+                loading={loading}
+                value={row.value}
+              />
             </TableCell>
-            <TableCell className="text-sm text-muted-foreground">{row.notes}</TableCell>
+            <TableCell className="text-muted-foreground text-sm">
+              {row.notes}
+            </TableCell>
           </TableRow>
         ))}
       </TableBody>
     </Table>
-  )
+  );
 }
