@@ -4,6 +4,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { Home, Settings, Flag, Zap } from "lucide-react"
+import { ThemeToggle } from "./theme-toggle"
 
 const navItems = [
   { href: "/", label: "Home", icon: Home },
@@ -16,12 +17,12 @@ export function LeftNav() {
   const pathname = usePathname()
 
   return (
-    <nav className="w-64 shrink-0 border-r border-border bg-sidebar p-4">
+    <nav className="w-64 shrink-0 border-r border-border bg-sidebar p-4 flex flex-col">
       <div className="mb-6">
         <h1 className="text-lg font-bold text-sidebar-foreground">Vercel Config Demo</h1>
         <p className="text-xs text-muted-foreground mt-1">Static vs Dynamic Configuration</p>
       </div>
-      <ul className="space-y-1">
+      <ul className="space-y-1 flex-1">
         {navItems.map((item) => {
           const Icon = item.icon
           const isActive = pathname === item.href
@@ -43,6 +44,10 @@ export function LeftNav() {
           )
         })}
       </ul>
+      <div className="pt-4 border-t border-border">
+        <p className="text-xs text-muted-foreground mb-2">Theme</p>
+        <ThemeToggle />
+      </div>
     </nav>
   )
 }
