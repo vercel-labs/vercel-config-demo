@@ -35,19 +35,57 @@ export default async function FlagsStatsigPage() {
           </p>
         </div>
 
-        {/* Static but Dynamic concept */}
+        {/* Why Statsig */}
         <Alert>
           <Lightbulb className="h-4 w-4" />
-          <AlertTitle>The &quot;Static but Dynamic&quot; Concept</AlertTitle>
+          <AlertTitle>Why Feature Flags (Statsig)?</AlertTitle>
           <AlertDescription className="mt-2">
-            <p>
-              Feature flags are evaluated at the edge (in middleware), and the
-              results are passed to your pages via headers or cookies. This
-              means your pages can still be cached and served from the CDN,
-              while different users see different experiences.
+            <p className="mb-2 text-muted-foreground">
+              Use Statsig for <strong>experimentation with measurement</strong> - A/B tests
+              where you need statistical analysis, consistent user bucketing across sessions,
+              and metric tracking to measure impact.
             </p>
+            <ul className="list-disc space-y-1 pl-4">
+              <li>
+                <strong>No redeploy needed:</strong> Toggle features instantly from
+                the Statsig console or Vercel Toolbar - changes apply to all existing
+                deployments immediately.
+              </li>
+              <li>
+                <strong>Statistical rigor:</strong> Get confidence intervals, p-values,
+                and automatic detection of metric regressions.
+              </li>
+              <li>
+                <strong>Cache-friendly:</strong> Flags are evaluated at the edge and
+                passed via headers/cookies, so pages stay CDN-cacheable while users
+                see different experiences.
+              </li>
+            </ul>
           </AlertDescription>
         </Alert>
+
+        {/* When NOT to use */}
+        <Card className="border-amber-500/50 bg-amber-500/5">
+          <CardHeader>
+            <CardTitle className="text-base">When NOT to Use Feature Flags</CardTitle>
+          </CardHeader>
+          <CardContent className="text-sm text-muted-foreground space-y-2">
+            <p>
+              Feature flags add complexity - managing flags per environment, ensuring
+              consistent evaluation, and cleaning up old flags. Consider simpler alternatives:
+            </p>
+            <ul className="list-disc pl-4 space-y-1">
+              <li>
+                <strong>Branch-specific env vars:</strong> If you just need different
+                config per preview branch (not per user), use env var overrides instead.
+              </li>
+              <li>
+                <strong>Edge Config:</strong> If you need instant operational changes
+                (kill switches, blocklists) without user bucketing or measurement.
+              </li>
+            </ul>
+          </CardContent>
+        </Card>
 
         {/* Current Flag Values */}
         <Card>
