@@ -89,6 +89,57 @@ export default function EnvVarsPage() {
           </CardContent>
         </Card>
 
+        {/* How to Set Up Branch-Specific Env Vars */}
+        <Card>
+          <CardHeader>
+            <CardTitle>How to Set Up Branch-Specific Overrides</CardTitle>
+            <CardDescription>
+              Step-by-step guide in the Vercel Dashboard
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="space-y-3">
+              <div className="flex items-center gap-2">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary font-medium text-primary-foreground text-xs">
+                  1
+                </span>
+                <p className="text-sm font-medium">
+                  Go to Project Settings &rarr; Environment Variables
+                </p>
+              </div>
+              <div className="rounded-lg border overflow-hidden">
+                <img
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-03-30%20at%2012.03.10%E2%80%AFAM-IbOny4uQhKqojYPukhEdoUT2Je7Mmq.png"
+                  alt="Vercel Environment Variables settings page showing Link Shared Variable and Add Environment Variable buttons"
+                  className="w-full"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <div className="flex items-center gap-2">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary font-medium text-primary-foreground text-xs">
+                  2
+                </span>
+                <p className="text-sm font-medium">
+                  Click &quot;Add Environment Variable&quot;, select Preview environment, then choose a specific branch
+                </p>
+              </div>
+              <div className="rounded-lg border overflow-hidden">
+                <img
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-03-30%20at%2012.03.25%E2%80%AFAM-hndRvVxRhn6jMdQex4wJaqMqEoWCux.png"
+                  alt="Add Environment Variable modal showing Preview environment selected with branch dropdown listing specific branches"
+                  className="w-full"
+                />
+              </div>
+              <p className="text-sm text-muted-foreground">
+                The branch dropdown lets you target a specific branch instead of &quot;All Preview Branches&quot;.
+                This override only applies to deployments from that branch.
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+
         {/* Build-time vs Runtime explanation */}
         <div className="grid gap-4 md:grid-cols-2">
           <Card>
