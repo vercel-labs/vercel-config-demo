@@ -13,7 +13,7 @@
     "@statsig/session-replay": "^3.32.3",
     "@statsig/web-analytics": "^3.32.3",
     "@vercel/edge-config": "^1.4.0",
-    "@vercel/flags": "^3.1.0",
+    "flags": "^4.0.0",
     "@vercel/toolbar": "^0.1.31",
     "@hookform/resolvers": "^3.9.1",
     "@vercel/analytics": "1.6.1",
