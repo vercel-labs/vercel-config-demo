@@ -25,6 +25,11 @@ export async function middleware(request: NextRequest) {
 
   // Example: Rewrite /sale to /sale-v2 based on Edge Config
   if (pathname === "/sale") {
+    // Skip Edge Config check if not configured
+    if (!process.env.EDGE_CONFIG) {
+      return NextResponse.next()
+    }
+
     try {
       // Read the sale page version from Edge Config
       // This value can be changed in the Vercel dashboard without redeploying

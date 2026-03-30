@@ -16,7 +16,10 @@ import { createClient } from "@vercel/edge-config"
 
 // Create the Edge Config client using the connection string from env
 // The EDGE_CONFIG env var is automatically set when you link an Edge Config store
-export const edgeConfig = createClient(process.env.EDGE_CONFIG)
+// We handle the case where the connection string is not set (e.g., local development)
+export const edgeConfig = process.env.EDGE_CONFIG 
+  ? createClient(process.env.EDGE_CONFIG)
+  : null
 
 /**
  * Type definitions for our demo Edge Config keys
@@ -46,6 +49,11 @@ export interface EdgeConfigData {
  * Fetch multiple Edge Config values at once
  */
 export async function getEdgeConfigValues(): Promise<EdgeConfigData> {
+  if (!edgeConfig) {
+    console.warn("Edge Config not configured - EDGE_CONFIG env var not set")
+    return {}
+  }
+
   try {
     const [regionalBanner, blockedSkus, redirectRules, salePageVersion] = await Promise.all([
       edgeConfig.get<RegionalBanner>("regional_banner_by_country"),
