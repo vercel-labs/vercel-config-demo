@@ -1,56 +1,87 @@
 "use client"
 
 import * as React from "react"
-import { Moon, Sun, Monitor } from "lucide-react"
+import { Moon, Sun, Monitor, ChevronDown } from "lucide-react"
 import { useTheme } from "next-themes"
 import { cn } from "@/lib/utils"
+
+const options = [
+  { value: "light", icon: Sun, label: "Light" },
+  { value: "dark", icon: Moon, label: "Dark" },
+  { value: "system", icon: Monitor, label: "System" },
+]
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = React.useState(false)
+  const [open, setOpen] = React.useState(false)
+  const dropdownRef = React.useRef<HTMLDivElement>(null)
 
   React.useEffect(() => {
     setMounted(true)
   }, [])
 
+  React.useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setOpen(false)
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => document.removeEventListener("mousedown", handleClickOutside)
+  }, [])
+
   if (!mounted) {
     return (
-      <div className="flex items-center gap-1 rounded-lg bg-muted p-1">
-        <div className="h-8 w-8 rounded-md" />
-        <div className="h-8 w-8 rounded-md" />
-        <div className="h-8 w-8 rounded-md" />
-      </div>
+      <div className="h-9 w-full rounded-md border border-input bg-background" />
     )
   }
 
-  const options = [
-    { value: "light", icon: Sun, label: "Light" },
-    { value: "dark", icon: Moon, label: "Dark" },
-    { value: "system", icon: Monitor, label: "System" },
-  ]
+  const currentOption = options.find((o) => o.value === theme) || options[2]
+  const Icon = currentOption.icon
 
   return (
-    <div className="flex items-center gap-1 rounded-lg bg-muted p-1">
-      {options.map((option) => {
-        const Icon = option.icon
-        const isActive = theme === option.value
-        return (
-          <button
-            key={option.value}
-            onClick={() => setTheme(option.value)}
-            className={cn(
-              "flex h-8 w-8 items-center justify-center rounded-md transition-colors",
-              isActive
-                ? "bg-background text-foreground shadow-sm"
-                : "text-muted-foreground hover:text-foreground"
-            )}
-            title={option.label}
-          >
-            <Icon className="h-4 w-4" />
-            <span className="sr-only">{option.label}</span>
-          </button>
-        )
-      })}
+    <div className="relative" ref={dropdownRef}>
+      <button
+        onClick={() => setOpen(!open)}
+        className={cn(
+          "flex h-9 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm",
+          "hover:bg-accent hover:text-accent-foreground",
+          "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+        )}
+      >
+        <span className="flex items-center gap-2">
+          <Icon className="h-4 w-4" />
+          {currentOption.label}
+        </span>
+        <ChevronDown className={cn("h-4 w-4 transition-transform", open && "rotate-180")} />
+      </button>
+      {open && (
+        <div className="absolute bottom-full left-0 mb-1 w-full rounded-md border border-border bg-popover p-1 shadow-md">
+          {options.map((option) => {
+            const OptionIcon = option.icon
+            const isActive = theme === option.value
+            return (
+              <button
+                key={option.value}
+                onClick={() => {
+                  setTheme(option.value)
+                  setOpen(false)
+                }}
+                className={cn(
+                  "flex w-full items-center gap-2 rounded-sm px-2 py-1.5 text-sm",
+                  isActive
+                    ? "bg-accent text-accent-foreground"
+                    : "hover:bg-accent hover:text-accent-foreground"
+                )}
+              >
+                <OptionIcon className="h-4 w-4" />
+                {option.label}
+              </button>
+            )
+          })}
+        </div>
+      )}
     </div>
   )
 }

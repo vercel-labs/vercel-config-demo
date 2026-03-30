@@ -1,4 +1,4 @@
-import { createClient } from "@vercel/edge-config"
+import { createClient, type EdgeConfigClient } from "@vercel/edge-config"
 
 /**
  * Edge Config Client Utility
@@ -14,12 +14,16 @@ import { createClient } from "@vercel/edge-config"
  * - A/B test configurations
  */
 
-// Create the Edge Config client using the connection string from env
+// Create the Edge Config client only if the connection string is available
 // The EDGE_CONFIG env var is automatically set when you link an Edge Config store
-// We handle the case where the connection string is not set (e.g., local development)
-export const edgeConfig = process.env.EDGE_CONFIG 
-  ? createClient(process.env.EDGE_CONFIG)
-  : null
+function getEdgeConfigClient(): EdgeConfigClient | null {
+  if (!process.env.EDGE_CONFIG) {
+    return null
+  }
+  return createClient(process.env.EDGE_CONFIG)
+}
+
+export const edgeConfig = getEdgeConfigClient()
 
 /**
  * Type definitions for our demo Edge Config keys
