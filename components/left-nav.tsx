@@ -17,7 +17,7 @@ export function LeftNav() {
   const pathname = usePathname()
 
   return (
-    <nav className="w-64 shrink-0 border-r border-border bg-sidebar p-4 flex flex-col">
+    <nav className="w-64 shrink-0 border-r border-border bg-sidebar p-4 flex flex-col h-screen sticky top-0">
       <div className="mb-6">
         <h1 className="text-lg font-bold text-sidebar-foreground">Vercel Config Demo</h1>
         <p className="text-xs text-muted-foreground mt-1">Static vs Dynamic Configuration</p>
