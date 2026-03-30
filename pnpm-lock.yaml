@@ -93,13 +93,13 @@ importers:
         specifier: 1.2.8
         version: 1.2.8(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@statsig/react-bindings':
-        specifier: ^3.0.0
+        specifier: ^3.32.3
         version: 3.32.3(react@19.2.4)
       '@statsig/session-replay':
-        specifier: ^3.0.0
+        specifier: ^3.32.3
         version: 3.32.3
       '@statsig/web-analytics':
-        specifier: ^3.0.0
+        specifier: ^3.32.3
         version: 3.32.3
       '@vercel/analytics':
         specifier: 1.6.1
