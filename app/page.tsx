@@ -59,7 +59,7 @@ export default function HomePage() {
 
         {/* Navigation Cards */}
         <div className="grid gap-4 md:grid-cols-3">
-          <Link href="/env-vars" className="group">
+          <Link href="/env-vars" prefetch={true} className="group">
             <Card className="h-full transition-colors hover:border-primary">
               <CardHeader>
                 <div className="flex items-center justify-between">
@@ -72,7 +72,7 @@ export default function HomePage() {
             </Card>
           </Link>
 
-          <Link href="/flags-statsig" className="group">
+          <Link href="/flags-statsig" prefetch={true} className="group">
             <Card className="h-full transition-colors hover:border-primary">
               <CardHeader>
                 <div className="flex items-center justify-between">
@@ -85,7 +85,7 @@ export default function HomePage() {
             </Card>
           </Link>
 
-          <Link href="/edge-config" className="group">
+          <Link href="/edge-config" prefetch={true} className="group">
             <Card className="h-full transition-colors hover:border-primary">
               <CardHeader>
                 <div className="flex items-center justify-between">
