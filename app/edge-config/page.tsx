@@ -33,7 +33,11 @@ export default async function EdgeConfigPage() {
           <Zap className="h-4 w-4" />
           <AlertTitle>Why Edge Config?</AlertTitle>
           <AlertDescription className="mt-2">
-            <ul className="list-disc space-y-1 pl-4">
+            <p className="mb-2 text-muted-foreground">
+              Edge Config is for <strong>operational configuration</strong> that needs ultra-low latency reads globally. 
+              For experiments with statistical analysis and user bucketing, use a platform like Statsig instead.
+            </p>
+            <ul className="list-disc pl-4 space-y-1">
               <li>
                 <strong>Sub-millisecond reads:</strong> Data is replicated to
                 all edge locations for ultra-fast access.
@@ -43,8 +47,8 @@ export default async function EdgeConfigPage() {
                 instantly without triggering a new deployment.
               </li>
               <li>
-                <strong>Works in middleware:</strong> Perfect for redirects, A/B
-                tests, and geo-targeting at the edge.
+                <strong>Works in middleware:</strong> Perfect for redirects, blocklists, kill switches,
+                and geo-targeted content at the edge.
               </li>
             </ul>
           </AlertDescription>
@@ -136,9 +140,9 @@ export async function middleware(request) {
                 </p>
               </div>
               <div className="rounded-lg border p-4">
-                <h4 className="mb-2 font-semibold">Feature Rollouts</h4>
-                <p className="text-muted-foreground text-sm">
-                  Gradually roll out features by percentage or user segment.
+                <h4 className="font-semibold mb-2">Kill Switches</h4>
+                <p className="text-sm text-muted-foreground">
+                  Instantly disable features during incidents without redeploying.
                 </p>
               </div>
             </div>
