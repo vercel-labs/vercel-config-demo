@@ -161,6 +161,56 @@ export default function EnvVarsPage() {
           </CardContent>
         </Card>
 
+        {/* Limits & Enterprise Features */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Limits &amp; Enterprise Features</CardTitle>
+            <CardDescription>
+              Understanding environment variable constraints
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="text-sm">
+            <div className="overflow-x-auto">
+              <table className="w-full text-left">
+                <thead>
+                  <tr className="border-b">
+                    <th className="pb-2 pr-4 font-medium">Limit</th>
+                    <th className="pb-2 pr-4 font-medium">Value</th>
+                  </tr>
+                </thead>
+                <tbody className="text-muted-foreground">
+                  <tr className="border-b">
+                    <td className="py-2 pr-4">Max env vars per environment per project</td>
+                    <td className="py-2 font-mono">1,000</td>
+                  </tr>
+                  <tr className="border-b">
+                    <td className="py-2 pr-4">Total size (all vars combined per deployment)</td>
+                    <td className="py-2 font-mono">64 KB</td>
+                  </tr>
+                  <tr className="border-b">
+                    <td className="py-2 pr-4">Edge Functions / Middleware per-var limit</td>
+                    <td className="py-2 font-mono">5 KB</td>
+                  </tr>
+                  <tr className="border-b">
+                    <td className="py-2 pr-4">Branch-specific overrides</td>
+                    <td className="py-2">Unlimited (any branch can have overrides)</td>
+                  </tr>
+                  <tr>
+                    <td className="py-2 pr-4">Custom environments (Enterprise)</td>
+                    <td className="py-2">Up to <strong>12</strong> beyond Production/Preview/Development</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p className="mt-4 text-muted-foreground">
+              <strong>Enterprise custom environments</strong> let you create isolated environments
+              like Staging, QA, or team-specific environments - each with their own env vars,
+              domains, and branch rules. This is useful when branch overrides aren&apos;t enough
+              and you need completely separate deployment contexts.
+            </p>
+          </CardContent>
+        </Card>
+
         {/* Build-time vs Runtime explanation */}
         <div className="grid gap-4 md:grid-cols-2">
           <Card>
