@@ -1,0 +1,67 @@
+import { createClient } from "@vercel/edge-config"
+
+/**
+ * Edge Config Client Utility
+ *
+ * Vercel Edge Config provides ultra-low-latency reads (< 1ms) for dynamic configuration.
+ * The connection string is stored in the EDGE_CONFIG environment variable.
+ *
+ * Common use cases:
+ * - Feature flags that need instant updates (no redeploy)
+ * - Regional content/banners
+ * - Block lists (SKUs, IPs, users)
+ * - Redirect rules
+ * - A/B test configurations
+ */
+
+// Create the Edge Config client using the connection string from env
+// The EDGE_CONFIG env var is automatically set when you link an Edge Config store
+export const edgeConfig = createClient(process.env.EDGE_CONFIG)
+
+/**
+ * Type definitions for our demo Edge Config keys
+ */
+export interface RegionalBanner {
+  [countryCode: string]: {
+    text: string
+    backgroundColor: string
+    textColor: string
+  }
+}
+
+export interface RedirectRule {
+  from: string
+  to: string
+  permanent: boolean
+}
+
+export interface EdgeConfigData {
+  regional_banner_by_country?: RegionalBanner
+  blocked_skus?: string[]
+  redirect_rules?: RedirectRule[]
+  sale_page_version?: "v1" | "v2"
+}
+
+/**
+ * Fetch multiple Edge Config values at once
+ */
+export async function getEdgeConfigValues(): Promise<EdgeConfigData> {
+  try {
+    const [regionalBanner, blockedSkus, redirectRules, salePageVersion] = await Promise.all([
+      edgeConfig.get<RegionalBanner>("regional_banner_by_country"),
+      edgeConfig.get<string[]>("blocked_skus"),
+      edgeConfig.get<RedirectRule[]>("redirect_rules"),
+      edgeConfig.get<"v1" | "v2">("sale_page_version"),
+    ])
+
+    return {
+      regional_banner_by_country: regionalBanner ?? undefined,
+      blocked_skus: blockedSkus ?? undefined,
+      redirect_rules: redirectRules ?? undefined,
+      sale_page_version: salePageVersion ?? undefined,
+    }
+  } catch (error) {
+    console.error("Error fetching Edge Config:", error)
+    return {}
+  }
+}
