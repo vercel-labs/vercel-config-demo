@@ -20,7 +20,7 @@ import { get } from "@vercel/edge-config"
  * - Maintenance mode
  * - Feature flag evaluation at the edge
  */
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
 
   // Example: Rewrite /sale to /sale-v2 based on Edge Config

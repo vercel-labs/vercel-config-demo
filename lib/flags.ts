@@ -44,6 +44,7 @@ export const freeShippingThresholdFlag = flag<number>({
   key: "flag_free_shipping_threshold",
   description: "Free shipping threshold in dollars",
   defaultValue: 50,
+  options: [25, 50, 75, 100, 150],
   decide: () => {
     // In production, this would come from Statsig dynamic config
     const threshold = process.env.FLAG_FREE_SHIPPING_THRESHOLD
@@ -61,6 +62,7 @@ export const checkoutExperimentFlag = flag<"control" | "variant_a" | "variant_b"
   key: "flag_checkout_experiment_variant",
   description: "Checkout experience experiment variant",
   defaultValue: "control",
+  options: ["control", "variant_a", "variant_b"],
   decide: () => {
     // In production, this would come from Statsig experiment
     const variant = process.env.FLAG_CHECKOUT_VARIANT as

@@ -6,6 +6,8 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Zap, Info } from "lucide-react"
 import { getEdgeConfigValues } from "@/lib/edge-config"
 
+export const dynamic = "force-dynamic"
+
 export default async function EdgeConfigPage() {
   // Fetch Edge Config values server-side
   const edgeConfigData = await getEdgeConfigValues()
