@@ -3,7 +3,7 @@ import { createClient, type EdgeConfigClient } from "@vercel/edge-config"
 /**
  * Edge Config Client Utility
  *
- * Vercel Edge Config provides ultra-low-latency reads (< 1ms) for dynamic configuration.
+ * Vercel Edge Config provides ultra-low-latency reads (<1ms) for dynamic configuration.
  * The connection string is stored in the EDGE_CONFIG environment variable.
  *
  * Common use cases:
