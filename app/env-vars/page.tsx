@@ -41,8 +41,13 @@ export default function EnvVarsPage() {
         {/* Key Concepts */}
         <Alert>
           <Info className="h-4 w-4" />
-          <AlertTitle>Key Concepts</AlertTitle>
+          <AlertTitle>Why Environment Variables?</AlertTitle>
           <AlertDescription className="mt-2">
+            <p className="mb-2 text-muted-foreground">
+              Use env vars for configuration that differs by environment (dev/preview/prod)
+              but stays constant within a deployment - like API endpoints, database URLs,
+              or third-party service credentials.
+            </p>
             <ul className="list-disc space-y-1 pl-4">
               <li>
                 <strong>Snapshotted per deployment:</strong> ALL env vars are
@@ -57,12 +62,32 @@ export default function EnvVarsPage() {
                 Vercel Project Settings.
               </li>
               <li>
-                <strong>Branch overrides:</strong> In Preview, branch-specific
-                overrides take precedence over general Preview env vars.
+                <strong>Branch overrides:</strong> For isolated preview testing,
+                use branch-specific overrides. This lets Branch A point to Salesforce
+                sandbox 1 while Branch B points to sandbox 2 - without conflicts.
               </li>
             </ul>
           </AlertDescription>
         </Alert>
+
+        {/* Real World Scenario */}
+        <Card className="border-amber-500/50 bg-amber-500/5">
+          <CardHeader>
+            <CardTitle className="text-base">Real-World Scenario: Isolated Preview Environments</CardTitle>
+          </CardHeader>
+          <CardContent className="text-sm text-muted-foreground space-y-2">
+            <p>
+              Your team has multiple developers working on feature branches. Developer A
+              needs their preview to hit Salesforce sandbox A, while Developer B needs
+              to hit sandbox B for regression testing.
+            </p>
+            <p>
+              <strong>Solution:</strong> Use branch-specific environment variable overrides
+              in Vercel. Each branch can have its own <code>SALESFORCE_URL</code> that only
+              applies to previews from that branch.
+            </p>
+          </CardContent>
+        </Card>
 
         {/* Build-time vs Runtime explanation */}
         <div className="grid gap-4 md:grid-cols-2">

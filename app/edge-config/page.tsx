@@ -34,25 +34,64 @@ export default async function EdgeConfigPage() {
           <AlertTitle>Why Edge Config?</AlertTitle>
           <AlertDescription className="mt-2">
             <p className="mb-2 text-muted-foreground">
-              Edge Config is for <strong>operational configuration</strong> that needs ultra-low latency reads globally. 
-              For experiments with statistical analysis and user bucketing, use a platform like Statsig instead.
+              Use Edge Config for <strong>operational configuration</strong> that needs to change
+              instantly without any deployment - blocklists, redirects, kill switches. It&apos;s
+              NOT for A/B testing (use Statsig for experiments with measurement).
             </p>
             <ul className="list-disc pl-4 space-y-1">
               <li>
                 <strong>Sub-millisecond reads:</strong> Data is replicated to
-                all edge locations for ultra-fast access.
+                all edge locations globally for ultra-fast access.
               </li>
               <li>
-                <strong>No redeploy needed:</strong> Update configuration
-                instantly without triggering a new deployment.
+                <strong>Truly instant updates:</strong> Unlike env vars which are
+                snapshotted per deployment, Edge Config changes apply to ALL existing
+                deployments immediately - no redeploy needed.
               </li>
               <li>
-                <strong>Works in middleware:</strong> Perfect for redirects, blocklists, kill switches,
-                and geo-targeted content at the edge.
+                <strong>Works in middleware:</strong> Perfect for decisions that
+                must happen before your app code runs - redirects, geo-routing, blocking.
               </li>
             </ul>
           </AlertDescription>
         </Alert>
+
+        {/* Comparison */}
+        <Card className="border-amber-500/50 bg-amber-500/5">
+          <CardHeader>
+            <CardTitle className="text-base">Edge Config vs Env Vars vs Feature Flags</CardTitle>
+          </CardHeader>
+          <CardContent className="text-sm">
+            <div className="overflow-x-auto">
+              <table className="w-full text-left">
+                <thead>
+                  <tr className="border-b">
+                    <th className="pb-2 pr-4 font-medium">Scenario</th>
+                    <th className="pb-2 pr-4 font-medium">Use</th>
+                  </tr>
+                </thead>
+                <tbody className="text-muted-foreground">
+                  <tr className="border-b">
+                    <td className="py-2 pr-4">Block a SKU or IP immediately during incident</td>
+                    <td className="py-2">Edge Config</td>
+                  </tr>
+                  <tr className="border-b">
+                    <td className="py-2 pr-4">A/B test checkout flow and measure conversion</td>
+                    <td className="py-2">Statsig</td>
+                  </tr>
+                  <tr className="border-b">
+                    <td className="py-2 pr-4">Point preview branch to different API sandbox</td>
+                    <td className="py-2">Env Vars (branch override)</td>
+                  </tr>
+                  <tr>
+                    <td className="py-2 pr-4">Redirect /promo to /sale for next 2 hours</td>
+                    <td className="py-2">Edge Config</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </CardContent>
+        </Card>
 
         {/* Current Edge Config Values */}
         <Card>
