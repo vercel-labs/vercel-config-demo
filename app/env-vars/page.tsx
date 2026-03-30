@@ -122,7 +122,28 @@ export default function EnvVarsPage() {
                   2
                 </span>
                 <p className="text-sm font-medium">
-                  Click &quot;Add Environment Variable&quot;, select Preview environment, then choose a specific branch
+                  Click &quot;Add Environment Variable&quot; and select which environments to apply it to
+                </p>
+              </div>
+              <div className="rounded-lg border overflow-hidden">
+                <img
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202026-03-30%20at%2012.06.07%E2%80%AFAM-2rXW75zn7YBUwD6WvSaZPCY8ed2AhT.png"
+                  alt="Add Environment Variable modal showing Environments dropdown with Production, Preview, and Development options"
+                  className="w-full"
+                />
+              </div>
+              <p className="text-sm text-muted-foreground">
+                You can apply variables to All Environments, or select specific ones (Production, Preview, Development).
+              </p>
+            </div>
+
+            <div className="space-y-3">
+              <div className="flex items-center gap-2">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary font-medium text-primary-foreground text-xs">
+                  3
+                </span>
+                <p className="text-sm font-medium">
+                  For Preview, choose a specific branch to create a branch-specific override
                 </p>
               </div>
               <div className="rounded-lg border overflow-hidden">
