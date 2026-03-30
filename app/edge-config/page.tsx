@@ -34,7 +34,7 @@ export default async function EdgeConfigPage() {
           <AlertTitle>Why Edge Config?</AlertTitle>
           <AlertDescription className="mt-2">
             <p className="mb-2 text-muted-foreground">
-              Use Edge Config for <strong>operational configuration</strong> that needs to change
+              Use Edge Config for <strong>operational configuration</strong>{" "}that needs to change
               instantly without any deployment - blocklists, redirects, kill switches. It&apos;s
               NOT for A/B testing (use Statsig for experiments with measurement).
             </p>
