@@ -1,7 +1,7 @@
 "use client";
 
-import React from "react";
 import { StatsigProvider } from "@statsig/react-bindings";
+import type React from "react";
 
 export default function MyStatsig({ children }: { children: React.ReactNode }) {
   const user = {
@@ -12,7 +12,7 @@ export default function MyStatsig({ children }: { children: React.ReactNode }) {
 
   return (
     <StatsigProvider
-      sdkKey={process.env.NEXT_PUBLIC_STATSIG_CLIENT_KEY!}
+      sdkKey={process.env.NEXT_PUBLIC_STATSIG_CLIENT_KEY ?? ""}
       user={user}
     >
       {children}

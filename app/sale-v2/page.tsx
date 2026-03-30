@@ -1,6 +1,6 @@
-import { PageLayout } from "@/components/page-layout"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import { PageLayout } from "@/components/page-layout";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 /**
  * Sale Page V2 (New Version)
@@ -13,7 +13,7 @@ export default function SalePageV2() {
     <PageLayout>
       <div className="space-y-6">
         <div className="flex items-center gap-3">
-          <h1 className="text-3xl font-bold tracking-tight">Sale</h1>
+          <h1 className="font-bold text-3xl tracking-tight">Sale</h1>
           <Badge>Version 2 (New!)</Badge>
         </div>
 
@@ -23,19 +23,24 @@ export default function SalePageV2() {
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-muted-foreground">
-              You are viewing the <strong>V2 (new)</strong> version of the sale page!
+              You are viewing the <strong>V2 (new)</strong> version of the sale
+              page!
             </p>
             <p className="text-muted-foreground">
-              The middleware detected <code>sale_page_version: &quot;v2&quot;</code> in Edge Config
-              and rewrote your request from <code>/sale</code> to <code>/sale-v2</code>.
+              The middleware detected{" "}
+              <code>sale_page_version: &quot;v2&quot;</code> in Edge Config and
+              rewrote your request from <code>/sale</code> to{" "}
+              <code>/sale-v2</code>.
             </p>
             <div className="rounded-lg bg-gradient-to-r from-primary/20 to-primary/5 p-8 text-center">
-              <p className="text-2xl font-bold">Modern Sale Banner</p>
-              <p className="text-muted-foreground">New gradient design with updated styling</p>
+              <p className="font-bold text-2xl">Modern Sale Banner</p>
+              <p className="text-muted-foreground">
+                New gradient design with updated styling
+              </p>
             </div>
           </CardContent>
         </Card>
       </div>
     </PageLayout>
-  )
+  );
 }

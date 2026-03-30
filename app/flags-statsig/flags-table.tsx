@@ -1,3 +1,4 @@
+import { Badge } from "@/components/ui/badge";
 import {
   Table,
   TableBody,
@@ -5,13 +6,12 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
-import { Badge } from "@/components/ui/badge"
+} from "@/components/ui/table";
 
 interface FlagsTableProps {
-  newPdpLayout: boolean
-  freeShippingThreshold: number
-  checkoutVariant: "control" | "variant_a" | "variant_b"
+  checkoutVariant: "control" | "variant_a" | "variant_b";
+  freeShippingThreshold: number;
+  newPdpLayout: boolean;
 }
 
 export function FlagsTable({
@@ -41,7 +41,7 @@ export function FlagsTable({
       displayValue: checkoutVariant,
       description: "Checkout experience experiment variant",
     },
-  ]
+  ];
 
   return (
     <Table>
@@ -61,14 +61,16 @@ export function FlagsTable({
               <Badge variant="outline">{flag.type}</Badge>
             </TableCell>
             <TableCell>
-              <code className="rounded bg-muted px-1.5 py-0.5 text-xs font-semibold">
+              <code className="rounded bg-muted px-1.5 py-0.5 font-semibold text-xs">
                 {flag.displayValue}
               </code>
             </TableCell>
-            <TableCell className="text-sm text-muted-foreground">{flag.description}</TableCell>
+            <TableCell className="text-muted-foreground text-sm">
+              {flag.description}
+            </TableCell>
           </TableRow>
         ))}
       </TableBody>
     </Table>
-  )
+  );
 }

@@ -1,7 +1,7 @@
-import { LeftNav } from "./left-nav"
+import { LeftNav } from "./left-nav";
 
 interface PageLayoutProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export function PageLayout({ children }: PageLayoutProps) {
@@ -12,5 +12,5 @@ export function PageLayout({ children }: PageLayoutProps) {
         <div className="mx-auto max-w-4xl">{children}</div>
       </main>
     </div>
-  )
+  );
 }

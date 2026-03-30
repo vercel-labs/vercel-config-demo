@@ -1,51 +1,53 @@
-import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
-import { VercelToolbar } from '@vercel/toolbar/next'
-import { ThemeProvider } from '@/components/theme-provider'
-import StatsigProvider from './statsig-provider'
-import './globals.css'
+import { Analytics } from "@vercel/analytics/next";
+import { VercelToolbar } from "@vercel/toolbar/next";
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import { ThemeProvider } from "@/components/theme-provider";
+import StatsigProvider from "./statsig-provider";
+import "./globals.css";
 
-const _geist = Geist({ subsets: ["latin"] });
-const _geistMono = Geist_Mono({ subsets: ["latin"] });
+const geistSans = Geist({ subsets: ["latin"], variable: "--font-sans" });
+const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono" });
 
 export const metadata: Metadata = {
-  title: 'Vercel Config Demo | Crocs',
-  description: 'Demonstrating static vs dynamic configuration on Vercel',
-  generator: 'v0.app',
+  title: "Vercel Config Demo | Crocs",
+  description: "Demonstrating static vs dynamic configuration on Vercel",
+  generator: "v0.app",
   icons: {
     icon: [
       {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
+        url: "/icon-light-32x32.png",
+        media: "(prefers-color-scheme: light)",
       },
       {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
+        url: "/icon-dark-32x32.png",
+        media: "(prefers-color-scheme: dark)",
       },
       {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
+        url: "/icon.svg",
+        type: "image/svg+xml",
       },
     ],
-    apple: '/apple-icon.png',
+    apple: "/apple-icon.png",
   },
-}
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="font-sans antialiased">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
+      >
         <StatsigProvider>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
-            enableSystem
             disableTransitionOnChange
+            enableSystem
           >
             {children}
           </ThemeProvider>
@@ -54,5 +56,5 @@ export default function RootLayout({
         <VercelToolbar />
       </body>
     </html>
-  )
+  );
 }
