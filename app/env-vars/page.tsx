@@ -45,13 +45,16 @@ export default function EnvVarsPage() {
           <AlertDescription className="mt-2">
             <ul className="list-disc space-y-1 pl-4">
               <li>
+                <strong>Snapshotted per deployment:</strong> ALL env vars are
+                captured at deploy time. If someone updates a value in the
+                dashboard while you&apos;re testing a Preview, your Preview
+                keeps using the old values. Only new deployments get updated
+                values.
+              </li>
+              <li>
                 <strong>Environment-specific:</strong> Env vars can differ by
                 environment (Development, Preview, Production) - configure in
                 Vercel Project Settings.
-              </li>
-              <li>
-                <strong>Changes require redeployment:</strong> Updates apply to
-                new deployments only, not retroactively to existing ones.
               </li>
               <li>
                 <strong>Branch overrides:</strong> In Preview, branch-specific
@@ -65,35 +68,35 @@ export default function EnvVarsPage() {
         <div className="grid gap-4 md:grid-cols-2">
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Build-time Variables</CardTitle>
+              <CardTitle className="text-lg">Build-time (Module Scope)</CardTitle>
               <CardDescription>
-                Read when the module is evaluated during build
+                Inlined into the JS bundle during build
               </CardDescription>
             </CardHeader>
             <CardContent className="text-muted-foreground text-sm">
               <p>
-                Variables accessed at the top level of a module (outside
-                functions) are captured during the build process. The values are
-                &quot;baked in&quot; and remain constant for the life of that
-                deployment.
+                Variables accessed at the top level of a module are literally
+                replaced with their values in the compiled code. The string
+                is baked into your bundle - it&apos;s not even a variable lookup
+                at runtime.
               </p>
               <code className="mt-2 block rounded bg-muted p-2 text-xs">
-                {"const API_URL = process.env.MY_VAR // At module scope"}
+                {"const API_URL = process.env.MY_VAR // Becomes: const API_URL = \"https://...\""}
               </code>
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Runtime Variables</CardTitle>
-              <CardDescription>Read fresh on each request</CardDescription>
+              <CardTitle className="text-lg">Runtime (Inside Functions)</CardTitle>
+              <CardDescription>Read from serverless function environment</CardDescription>
             </CardHeader>
             <CardContent className="text-muted-foreground text-sm">
               <p>
                 Variables accessed inside Route Handlers or Server Components
-                are read at request time. This allows for more dynamic behavior,
-                though the values still come from the deployment&apos;s
-                environment.
+                are read from the function&apos;s environment per request. Still
+                snapshotted per deployment, but allows the same code to behave
+                differently across environments without rebuilding.
               </p>
               <code className="mt-2 block rounded bg-muted p-2 text-xs">
                 {"export async function GET() { return process.env.MY_VAR }"}
