@@ -210,7 +210,7 @@ export default function EnvVarsPage() {
             </p>
             <div className="mt-4 flex flex-wrap gap-2">
               <a
-                href="https://vercel.com/docs/environment-variables"
+                href="https://vercel.com/docs/projects/environment-variables"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1 text-xs text-primary hover:underline"
@@ -218,7 +218,7 @@ export default function EnvVarsPage() {
                 Env Vars Docs &rarr;
               </a>
               <a
-                href="https://vercel.com/docs/accounts/plans-and-billing/limits"
+                href="https://vercel.com/docs/limits"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1 text-xs text-primary hover:underline"
