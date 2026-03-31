@@ -34,9 +34,10 @@ export default async function EdgeConfigPage() {
           <AlertTitle>Why Edge Config?</AlertTitle>
           <AlertDescription className="mt-2">
             <p className="mb-2 text-muted-foreground">
-              Use Edge Config for <strong>operational configuration</strong>{" "}that needs to change
-              instantly without any deployment - blocklists, redirects, kill switches. It&apos;s
-              NOT for A/B testing (use Statsig for experiments with measurement).
+              Use Edge Config for <strong>operational configuration</strong>{" "}
+              that needs to change instantly without any deployment -
+              blocklists, redirects, kill switches. It&apos;s NOT for A/B
+              testing (use Statsig for experiments with measurement).
             </p>
             <ul className="list-disc space-y-1 pl-4">
               <li>
@@ -44,13 +45,14 @@ export default async function EdgeConfigPage() {
                 all edge locations globally for ultra-fast access.
               </li>
               <li>
-                <strong>Truly instant updates:</strong> Unlike env vars which are
-                snapshotted per deployment, Edge Config changes apply to ALL existing
-                deployments immediately - no redeploy needed.
+                <strong>Truly instant updates:</strong> Unlike env vars which
+                are snapshotted per deployment, Edge Config changes apply to ALL
+                existing deployments immediately - no redeploy needed.
               </li>
               <li>
                 <strong>Works in middleware:</strong> Perfect for decisions that
-                must happen before your app code runs - redirects, geo-routing, blocking.
+                must happen before your app code runs - redirects, geo-routing,
+                blocking.
               </li>
             </ul>
           </AlertDescription>
@@ -59,32 +61,42 @@ export default async function EdgeConfigPage() {
         {/* Comparison */}
         <Card className="border-amber-500/50 bg-amber-500/5">
           <CardHeader>
-            <CardTitle className="text-base">Edge Config vs Env Vars vs Feature Flags</CardTitle>
+            <CardTitle className="text-base">
+              Edge Config vs Env Vars vs Feature Flags
+            </CardTitle>
           </CardHeader>
           <CardContent className="text-sm">
             <div className="overflow-x-auto">
               <table className="w-full text-left">
                 <thead>
                   <tr className="border-b">
-                    <th className="pb-2 pr-4 font-medium">Scenario</th>
-                    <th className="pb-2 pr-4 font-medium">Use</th>
+                    <th className="pr-4 pb-2 font-medium">Scenario</th>
+                    <th className="pr-4 pb-2 font-medium">Use</th>
                   </tr>
                 </thead>
                 <tbody className="text-muted-foreground">
                   <tr className="border-b">
-                    <td className="py-2 pr-4">Block a SKU or IP immediately during incident</td>
+                    <td className="py-2 pr-4">
+                      Block a SKU or IP immediately during incident
+                    </td>
                     <td className="py-2">Edge Config</td>
                   </tr>
                   <tr className="border-b">
-                    <td className="py-2 pr-4">A/B test checkout flow and measure conversion</td>
+                    <td className="py-2 pr-4">
+                      A/B test checkout flow and measure conversion
+                    </td>
                     <td className="py-2">Statsig</td>
                   </tr>
                   <tr className="border-b">
-                    <td className="py-2 pr-4">Point preview branch to different API sandbox</td>
+                    <td className="py-2 pr-4">
+                      Point preview branch to different API sandbox
+                    </td>
                     <td className="py-2">Env Vars (branch override)</td>
                   </tr>
                   <tr>
-                    <td className="py-2 pr-4">Redirect /promo to /sale for next 2 hours</td>
+                    <td className="py-2 pr-4">
+                      Redirect /promo to /sale for next 2 hours
+                    </td>
                     <td className="py-2">Edge Config</td>
                   </tr>
                 </tbody>

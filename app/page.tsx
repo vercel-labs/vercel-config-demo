@@ -28,21 +28,24 @@ export default function HomePage() {
           <CardHeader>
             <CardTitle>The Core Challenge</CardTitle>
             <CardDescription>
-              Real-world scenario: Simultaneous preview deployments with different configs
+              Real-world scenario: Simultaneous preview deployments with
+              different configs
             </CardDescription>
           </CardHeader>
-          <CardContent className="text-sm space-y-3">
+          <CardContent className="space-y-3 text-sm">
             <p>
-              Teams often have multiple developers working on feature branches, each needing
-              isolated preview deployments running simultaneously. Each branch may need
-              different configuration - pointing to different API instances, CMS versions,
-              or feature states for testing.
+              Teams often have multiple developers working on feature branches,
+              each needing isolated preview deployments running simultaneously.
+              Each branch may need different configuration - pointing to
+              different API instances, CMS versions, or feature states for
+              testing.
             </p>
             <p className="text-muted-foreground">
-              <strong>The constraint:</strong> When a preview is deployed, Vercel snapshots
-              env vars at that moment. If you update a value later, existing previews keep
-              their original snapshotted values. This creates conflicts when Branch A and
-              Branch B need different values for the same variable.
+              <strong>The constraint:</strong> When a preview is deployed,
+              Vercel snapshots env vars at that moment. If you update a value
+              later, existing previews keep their original snapshotted values.
+              This creates conflicts when Branch A and Branch B need different
+              values for the same variable.
             </p>
           </CardContent>
         </Card>
@@ -52,7 +55,8 @@ export default function HomePage() {
           <CardHeader>
             <CardTitle>Three Configuration Mechanisms</CardTitle>
             <CardDescription>
-              Choose based on how often values change and who needs to change them
+              Choose based on how often values change and who needs to change
+              them
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -64,7 +68,8 @@ export default function HomePage() {
                 <div>
                   <strong>Environment Variables</strong> - Per-deployment config
                   snapshotted at build time. Use branch-specific overrides for
-                  isolated preview environments. <em>Requires redeploy to change.</em>
+                  isolated preview environments.{" "}
+                  <em>Requires redeploy to change.</em>
                 </div>
               </li>
               <li className="flex items-start gap-3">
@@ -72,8 +77,9 @@ export default function HomePage() {
                   2
                 </span>
                 <div>
-                  <strong>Feature Flags (Statsig)</strong> - Experimentation with
-                  statistical analysis, user bucketing, and metric tracking.
+                  <strong>Feature Flags (Statsig)</strong> - Experimentation
+                  with statistical analysis, user bucketing, and metric
+                  tracking.
                   <em> Changes instantly without redeploy.</em>
                 </div>
               </li>
@@ -83,7 +89,8 @@ export default function HomePage() {
                 </span>
                 <div>
                   <strong>Edge Config</strong> - Operational config (blocklists,
-                  redirects, kill switches) with sub-millisecond reads at the edge.
+                  redirects, kill switches) with sub-millisecond reads at the
+                  edge.
                   <em> Changes instantly without redeploy.</em>
                 </div>
               </li>

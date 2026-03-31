@@ -41,24 +41,24 @@ export default async function FlagsStatsigPage() {
           <AlertTitle>Why Feature Flags (Statsig)?</AlertTitle>
           <AlertDescription className="mt-2">
             <p className="mb-2 text-muted-foreground">
-              Use Statsig for <strong>experimentation with measurement</strong> - A/B tests
-              where you need statistical analysis, consistent user bucketing across sessions,
-              and metric tracking to measure impact.
+              Use Statsig for <strong>experimentation with measurement</strong>{" "}
+              - A/B tests where you need statistical analysis, consistent user
+              bucketing across sessions, and metric tracking to measure impact.
             </p>
             <ul className="list-disc space-y-1 pl-4">
               <li>
-                <strong>No redeploy needed:</strong> Toggle features instantly from
-                the Statsig console or Vercel Toolbar - changes apply to all existing
-                deployments immediately.
+                <strong>No redeploy needed:</strong> Toggle features instantly
+                from the Statsig console or Vercel Toolbar - changes apply to
+                all existing deployments immediately.
               </li>
               <li>
-                <strong>Statistical rigor:</strong> Get confidence intervals, p-values,
-                and automatic detection of metric regressions.
+                <strong>Statistical rigor:</strong> Get confidence intervals,
+                p-values, and automatic detection of metric regressions.
               </li>
               <li>
-                <strong>Cache-friendly:</strong> Flags are evaluated at the edge and
-                passed via headers/cookies, so pages stay CDN-cacheable while users
-                see different experiences.
+                <strong>Cache-friendly:</strong> Flags are evaluated at the edge
+                and passed via headers/cookies, so pages stay CDN-cacheable
+                while users see different experiences.
               </li>
             </ul>
           </AlertDescription>
@@ -67,21 +67,26 @@ export default async function FlagsStatsigPage() {
         {/* When NOT to use */}
         <Card className="border-amber-500/50 bg-amber-500/5">
           <CardHeader>
-            <CardTitle className="text-base">When NOT to Use Feature Flags</CardTitle>
+            <CardTitle className="text-base">
+              When NOT to Use Feature Flags
+            </CardTitle>
           </CardHeader>
-          <CardContent className="text-sm text-muted-foreground space-y-2">
+          <CardContent className="space-y-2 text-muted-foreground text-sm">
             <p>
-              Feature flags add complexity - managing flags per environment, ensuring
-              consistent evaluation, and cleaning up old flags. Consider simpler alternatives:
+              Feature flags add complexity - managing flags per environment,
+              ensuring consistent evaluation, and cleaning up old flags.
+              Consider simpler alternatives:
             </p>
-            <ul className="list-disc pl-4 space-y-1">
+            <ul className="list-disc space-y-1 pl-4">
               <li>
-                <strong>Branch-specific env vars:</strong> If you just need different
-                config per preview branch (not per user), use env var overrides instead.
+                <strong>Branch-specific env vars:</strong> If you just need
+                different config per preview branch (not per user), use env var
+                overrides instead.
               </li>
               <li>
-                <strong>Edge Config:</strong> If you need instant operational changes
-                (kill switches, blocklists) without user bucketing or measurement.
+                <strong>Edge Config:</strong> If you need instant operational
+                changes (kill switches, blocklists) without user bucketing or
+                measurement.
               </li>
             </ul>
           </CardContent>
