@@ -1,6 +1,6 @@
 # Vercel Configuration Demo
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel-labs%2Fvercel-config-demo&env=STATSIG_SERVER_SECRET,STATSIG_CLIENT_KEY&envDescription=Statsig%20keys%20for%20feature%20flags&envLink=https%3A%2F%2Fconsole.statsig.com)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel-labs%2Fvercel-config-demo)
 
 A Next.js demo project demonstrating **static vs dynamic configuration on Vercel** using three mechanisms:
 
