@@ -1,4 +1,5 @@
 import { Info } from "lucide-react";
+import NextImage from "next/image";
 import { DebugPanel } from "@/components/debug-panel";
 import { PageLayout } from "@/components/page-layout";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
@@ -112,7 +113,7 @@ export default function EnvVarsPage() {
                 </p>
               </div>
               <div className="overflow-hidden rounded-lg border">
-                <Image
+                <NextImage
                   alt="Vercel Environment Variables settings page showing Link Shared Variable and Add Environment Variable buttons"
                   className="w-full"
                   height={900}
@@ -133,7 +134,7 @@ export default function EnvVarsPage() {
                 </p>
               </div>
               <div className="overflow-hidden rounded-lg border">
-                <Image
+                <NextImage
                   alt="Add Environment Variable modal showing Environments dropdown with Production, Preview, and Development options"
                   className="w-full"
                   height={900}
@@ -158,7 +159,7 @@ export default function EnvVarsPage() {
                 </p>
               </div>
               <div className="overflow-hidden rounded-lg border">
-                <Image
+                <NextImage
                   alt="Add Environment Variable modal showing Preview environment selected with branch dropdown listing specific branches"
                   className="w-full"
                   height={900}
