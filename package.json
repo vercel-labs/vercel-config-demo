@@ -5,7 +5,7 @@
   "description": "Next.js demo showcasing Vercel configuration: environment variables, feature flags, and Edge Config",
   "license": "MIT",
   "engines": {
-    "node": ">=18.18.0"
+    "node": "24.x"
   },
   "scripts": {
     "dev": "next dev",
